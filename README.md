@@ -9,6 +9,13 @@ This project is part of a distributed ticketing system composed of several micro
 - **apigateway**: Entry point for client requests, routing them to appropriate services.
 - **bookingservice**: Manages booking requests and coordinates with other services.
 
+### Github Repository
+- [API Gateway Repository]()
+- [Inventory Service Repository]()
+- [Order Service Repository]()
+- [Booking Service Repository]()
+
+
 ## Kafka Integration
 
 Kafka is used as the message broker to enable asynchronous communication between services. Specifically:

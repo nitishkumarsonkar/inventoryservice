@@ -30,7 +30,7 @@ public class InventoryService {
         final List<Event> events =eventRepository.findAll();
         return events.stream().map(event ->EventInventoryResponse.builder()
                 .name(event.getName())
-                .capacity(event.getTotalCapacity())
+                .leftCapacity(event.getLeftCapacity())
                 .venue(event.getVenue())
                 .build()).toList();
     }
@@ -38,6 +38,7 @@ public class InventoryService {
     public VenueInventoryResponse getVenueById(Long id) {
         final Venue venue = venueRepository.findById(id).orElseThrow(() -> new NoSuchElementException("Venue not found with id: " + id));
         return VenueInventoryResponse.builder()
+                .id(venue.getId())
                 .name(venue.getName())
                 .address(venue.getAddress())
                 .totalCapacity(venue.getTotalCapacity())
@@ -49,7 +50,7 @@ public class InventoryService {
         return EventInventoryResponse.builder()
                 .eventId(event.getId())
                 .name(event.getName())
-                .capacity(event.getTotalCapacity())
+                .leftCapacity(event.getLeftCapacity())
                 .venue(event.getVenue())
                 .ticketPrice(event.getTicketPrice())
                 .build();
@@ -63,6 +64,5 @@ public class InventoryService {
         event.setLeftCapacity(event.getLeftCapacity() - bookedTicketsCount);
         eventRepository.save(event);
         log.info("Event capacity updated successfully for eventId: {}", eventId);
-
     }
 }
